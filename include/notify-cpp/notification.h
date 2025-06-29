@@ -6,13 +6,15 @@ namespace notifycpp {
 
 class Notification {
 public:
-    Notification(Event, const std::string&);
+    Notification(Event, const std::string&, unsigned int = 0);
 
-    std::string getPath() const;
-    Event getEvent() const;
+    [[nodiscard]] std::string getPath() const;
+    [[nodiscard]] Event getEvent() const;
+    [[nodiscard]] unsigned int getPid() const;
 
 private:
     Event _Event;
     std::string _Path;
+    unsigned int _Pid;
 };
 }

@@ -27,14 +27,14 @@ namespace notifycpp {
 
 FileSystemEvent::FileSystemEvent(const std::filesystem::path& p)
     : _Event(Event::open)
-    , _Path(p)
+    , _Path(p), _Pid(0)
 {
 }
 
 FileSystemEvent::FileSystemEvent(const std::filesystem::path& p,
-    const Event event)
+    const Event event, unsigned int pid)
     : _Event(event)
-    , _Path(p)
+    , _Path(p), _Pid(pid)
 {
 }
 
@@ -51,5 +51,10 @@ std::filesystem::path
 FileSystemEvent::getPath() const
 {
     return _Path;
+}
+
+unsigned int FileSystemEvent::getPid() const
+{
+    return _Pid;
 }
 }

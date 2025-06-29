@@ -125,7 +125,7 @@ void NotifyController::runOnce()
         for (const auto& observerEvent : observers) {
             /* handle observed processes */
             auto eventObserver = observerEvent.second;
-            eventObserver({observerEvent.first, fileSystemEvent->getPath()});
+            eventObserver({observerEvent.first, fileSystemEvent->getPath(), fileSystemEvent->getPid()});
         }
     }
 }

@@ -25,9 +25,9 @@
 
 namespace notifycpp {
 
-Notification::Notification(Event event, const std::string& path)
+Notification::Notification(Event event, const std::string& path, unsigned int pid)
     : _Event(event)
-    , _Path(path)
+    , _Path(path), _Pid(pid)
 {
 }
 
@@ -39,5 +39,10 @@ std::string Notification::getPath() const
 Event Notification::getEvent() const
 {
     return _Event;
+}
+
+unsigned int Notification::getPid() const
+{
+    return _Pid;
 }
 }

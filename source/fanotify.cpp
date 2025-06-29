@@ -175,10 +175,11 @@ TFileSystemEventPtr Fanotify::getNextEvent()
 
                     const std::string filename = getFilePath(metadata->fd);
                     const std::filesystem::path path(filename);
+                    const unsigned int pid = metadata->pid;
                     if (!filename.empty() && !isIgnoredOnce(path)) {
                         for (const Event event : _EventHandler.getFanotifyEvents(static_cast<uint32_t>(metadata->mask)))
                             if (event != Event::none)
-                                _Queue.push(std::make_shared<FileSystemEvent>(path , event));
+                                _Queue.push(std::make_shared<FileSystemEvent>(path , event, pid));
                         close(metadata->fd);
                     }
                     metadata = FAN_EVENT_NEXT(metadata, length);
